@@ -1,4 +1,11 @@
 ;; private configuration in additon to nano.el
+
+;; User name
+(setq user-full-name "voidfoo")
+
+;; User mail address
+(setq user-mail-address "void.foo@gamil.com")
+
 (menu-bar-mode -1)
 
 ;; allow M-SPC as a prefix
