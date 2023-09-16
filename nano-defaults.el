@@ -41,12 +41,6 @@
 ;; No popup windows
 (setq pop-up-windows nil)
 
-;; User name
-(setq user-full-name "Nicolas P. Rougier")
-
-;; User mail address
-(setq user-mail-address "Nicolas.Rougier@inria.fr")
-
 ;; No empty line indicators
 (setq indicate-empty-lines nil)
 
@@ -88,18 +82,15 @@
   (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
 
 ;; No scroll bars
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode nil))
+(if (fboundp 'scroll-bar-mode) (set-scroll-bar-mode nil))
 
 ;; No toolbar
-(if (fboundp 'tool-bar-mode) (tool-bar-mode nil))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
 ;; No menu bar
 (if (display-graphic-p)
     (menu-bar-mode t) ;; When nil, focus problem on OSX
   (menu-bar-mode -1))
-
-;; Navigate windows using shift+direction
-(windmove-default-keybindings)
 
 ;; Tab behavior
 ;; (setq tab-always-indent 'complete)
@@ -163,7 +154,9 @@
       uniquify-ignore-buffers-re "^\\*")
 
 ;; Default shell in term
-(unless (eq system-type 'windows-nt)
+(unless
+    (or (eq system-type 'windows-nt)
+        (not (file-exists-p "/bin/zsh")))
   (setq-default shell-file-name "/bin/zsh")
   (setq explicit-shell-file-name "/bin/zsh"))
 
